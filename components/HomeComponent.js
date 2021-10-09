@@ -20,9 +20,7 @@ function RenderItem({item}) {
     }
     return <View />;
 }
-
 class Home extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -31,11 +29,9 @@ class Home extends Component {
             partners: PARTNERS
         };
     }
-
     static navigationOptions = {
         title: 'Home'
     }
-
     render() {
         return (
             <ScrollView>
@@ -52,5 +48,12 @@ class Home extends Component {
         );
     }
 }
-
 export default Home;
+
+
+
+
+
+
+
+
