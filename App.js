@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import Main from './components/MainComponent';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
@@ -8,8 +9,6 @@ import Loading from './components/LoadingComponent';
 const { persistor, store } = ConfigureStore();
 
 console.disableYellowBox = true;
-
-const store = ConfigureStore();
 
 export default function App() {
     return (
