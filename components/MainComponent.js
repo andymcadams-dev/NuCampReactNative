@@ -5,8 +5,9 @@ import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
 import Constants from "expo-constants";
-import Reservation from './ReservationComponent';
-import Favorites from './FavoritesComponent';
+import Reservation from "./ReservationComponent";
+import Favorites from "./FavoritesComponent";
+import Login from "./LoginComponent";
 import {
   View,
   Platform,
@@ -20,20 +21,19 @@ import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 import { Icon } from "react-native-elements";
 import SafeAreaView from "react-native-safe-area-view";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import {
   fetchCampsites,
   fetchComments,
   fetchPromotions,
-  fetchPartners,
+  fetchPartners
 } from "../redux/ActionCreators";
-
 
 const mapDispatchToProps = {
   fetchCampsites,
   fetchComments,
   fetchPromotions,
-  fetchPartners,
+  fetchPartners
 };
 
 const DirectoryNavigator = createStackNavigator(
@@ -144,47 +144,75 @@ const ContactNavigator = createStackNavigator(
 
 const ReservationNavigator = createStackNavigator(
   {
-      Reservation: { screen: Reservation }
+    Reservation: { screen: Reservation },
   },
   {
-      defaultNavigationOptions: ({navigation}) => ({
-          headerStyle: {
-              backgroundColor: '#5637DD'
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-              color: '#fff'
-          },
-          headerLeft: <Icon
-              name='tree'
-              type='font-awesome'
-              iconStyle={styles.stackIcon}
-              onPress={() => navigation.toggleDrawer()}
-          />
-      })
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerLeft: (
+        <Icon
+          name="tree"
+          type="font-awesome"
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
   }
 );
 
 const FavoritesNavigator = createStackNavigator(
   {
-      Favorites: { screen: Favorites }
+    Favorites: { screen: Favorites },
   },
   {
-      defaultNavigationOptions: ({navigation}) => ({
-          headerStyle: {
-              backgroundColor: '#5637DD'
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-              color: '#fff'
-          },
-          headerLeft: <Icon
-              name='heart'
-              type='font-awesome'
-              iconStyle={styles.stackIcon}
-              onPress={() => navigation.toggleDrawer()}
-          />
-      })
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerLeft: (
+        <Icon
+          name="heart"
+          type="font-awesome"
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
+  }
+);
+const LoginNavigator = createStackNavigator(
+  {
+    Login: { screen: Login },
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerLeft: (
+        <Icon
+          name="sign-in"
+          type="font-awesome"
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
   }
 );
 
@@ -212,6 +240,20 @@ const CustomDrawerContentComponent = (props) => (
 
 const MainNavigator = createDrawerNavigator(
   {
+    Login: {
+      screen: LoginNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="sign-in"
+            type="font-awesome"
+            size={24}
+            color={tintColor}
+          />
+        ),
+      },
+    },
+
     Home: {
       screen: HomeNavigator,
       navigationOptions: {
@@ -231,31 +273,21 @@ const MainNavigator = createDrawerNavigator(
     Reservation: {
       screen: ReservationNavigator,
       navigationOptions: {
-          drawerLabel: 'Reserve Campsite',
-          drawerIcon: ({tintColor}) => (
-              <Icon
-                  name='tree'
-                  type='font-awesome'
-                  size={24}
-                  color={tintColor}
-              />
-          )
-      }
-  },
-  Favorites: {
-    screen: FavoritesNavigator,
-    navigationOptions: {
-        drawerLabel: 'My Favorites',
-        drawerIcon: ({tintColor}) => (
-            <Icon
-                name='heart'
-                type='font-awesome'
-                size={24}
-                color={tintColor}
-            />
-        )
-    }
-},
+        drawerLabel: "Reserve Campsite",
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="tree" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Favorites: {
+      screen: FavoritesNavigator,
+      navigationOptions: {
+        drawerLabel: "My Favorites",
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="heart" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
     About: {
       screen: AboutNavigator,
       navigationOptions: {
@@ -281,6 +313,7 @@ const MainNavigator = createDrawerNavigator(
     },
   },
   {
+    initialRouteName: "Home",
     drawerBackgroundColor: "#CEC8FF",
     contentComponent: CustomDrawerContentComponent,
   }
@@ -336,7 +369,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: "#fff",
     fontSize: 24,
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(Main);

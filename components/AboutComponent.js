@@ -4,7 +4,7 @@ import { Card, ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from "react-native-animatable";
 
 const mapStateToProps = (state) => {
   return {
@@ -47,28 +47,28 @@ class About extends React.Component {
     if (this.props.partners.isLoading) {
       return (
         <ScrollView>
-          <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+          <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
             <Mission />
             <Card title="Community Partners">
               <Loading />
             </Card>
-          </Animatable.View>  
+          </Animatable.View>
         </ScrollView>
       );
     }
     if (this.props.partners.errMess) {
       <ScrollView>
-        <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
           <Mission />
           <Card title="Community Partners">
             <Text>{this.props.partners.errMess}</Text>
           </Card>
-        </Animatable.View>  
+        </Animatable.View>
       </ScrollView>;
     }
     return (
       <ScrollView>
-      <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
+        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
           <Mission />
           <Card title="Community Partners">
             <FlatList
@@ -77,7 +77,7 @@ class About extends React.Component {
               renderItem={renderPartner}
             />
           </Card>
-        </Animatable.View>  
+        </Animatable.View>
       </ScrollView>
     );
   }
