@@ -36,7 +36,8 @@ function RenderCampsite(props) {
 
   const view = React.createRef();
 
-  const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+  const recognizeDrag = ({ dx }) => (dx < -200) ? true : false;
+  const recognizeComment = ({dx}) => (dx > 200) ? true : false;
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -121,6 +122,15 @@ function RenderCampsite(props) {
               reverse
               onPress={() => props.onShowModal()}
             />
+            <Icon
+              name={'share'}
+              type="font-awesome"
+              color="#5637DD"
+              raised
+              reverse
+              onPress={() => shareCampsite(campsite.name, campsite.description, 
+                baseUrl + campsite.image)}
+                />
           </View>
         </Card>
       </Animatable.View>
